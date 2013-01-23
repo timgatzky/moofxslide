@@ -1,0 +1,84 @@
+
+<script type="text/javascript">
+/* <![CDATA[ */
+
+/**
+ * Mootools Fx.Slide
+ * see: http://mootools.net/docs/more/Fx/Fx.Slide
+ */
+(function($) 
+{
+	window.addEvent('domready', function() 
+	{
+		var togglers = $$('div.slide_toggler');
+		var sliders = $$('div.slide');
+		var display = -1;
+		
+		sliders.each(function(elem,index)
+		{
+			// set new slide instance for element
+			elem.set('slide',
+			{
+				mode:'vertical'
+			});
+			
+			elem.addClass('slide_'+index);
+			togglers[index].addClass('slide_toggler_'+index);
+		});
+		
+		
+		togglers.each(function(elem,index)
+		{
+			elem.addEvent('click', function(event)
+			{
+				// fade effect
+				if(sliders[index].get('slide').open)
+				{
+					sliders[index].fade('out');
+				}
+				else
+				{
+					sliders[index].fade('in');
+				}
+				
+				sliders[index].get('slide').toggle().chain
+				(
+					function()
+					{
+						if(this.open)
+						{	
+							togglers[index].addClass('active');
+							sliders[index].addClass('active');
+						}
+						else
+						{
+							togglers[index].removeClass('active');
+							sliders[index].removeClass('active');
+						}
+					}
+				);
+			});
+		});
+		
+		
+		// close all
+		sliders.each(function(elem,index)
+		{
+		   elem.get('slide').hide();
+		});
+		
+		// hide all
+		sliders.fade('hide');
+		
+		// toggle visibility on start
+		if(display >= 0)
+		{	
+			sliders[display].get('slide').show();
+			sliders[display].fade('show');
+		}
+		
+	})
+})(document.id);
+
+/* ]]> */
+</script>
