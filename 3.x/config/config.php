@@ -15,10 +15,15 @@
 /**
  * Content elements
  */
-//insert below accordion
-$intPos = 0;
-foreach($GLOBALS['TL_CTE']['texts'] as $ce)
-{
-	if($ce != 'accordion') $intPos++;
-}
-array_insert($GLOBALS['TL_CTE']['texts'],$intPos-1,array('moofxslide'=>'ContentFxSlide'));
+array_insert($GLOBALS['TL_CTE'],2,array
+(
+	'moofxslide'	=> array
+	(
+		'moofxslideSingle'	=> 'ContentFxSlide',
+		'moofxslideStart'	=> 'ContentFxSlideStart',
+		'moofxslideStop'	=> 'ContentFxSlideStop'
+	)
+));
+
+$GLOBALS['TL_WRAPPERS']['start'][] 	= 'moofxslideStart';
+$GLOBALS['TL_WRAPPERS']['stop'][] 	= 'moofxslideStop';

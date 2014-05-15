@@ -16,6 +16,7 @@
 /**
  * Content elements
  */
-$GLOBALS['TL_LANG']['CTE']['moofxslide'] = array('Mootools Fx.Slide', 'Erzeugt ein mootools Fx.Slide-Element.');
-
-?>
+$GLOBALS['TL_LANG']['CTE']['moofxslide'] 		= 'Mootools Fx.Slide';
+$GLOBALS['TL_LANG']['CTE']['moofxslideStart'] 	= array('Fx.Slide Umschlag Anfang', 'Öffnet ein mootools Fx.Slide-Element.');
+$GLOBALS['TL_LANG']['CTE']['moofxslideStop'] 	= array('Fx.Slide Umschlag Ende', 'Schliesst ein mootools Fx.Slide-Element.');
+$GLOBALS['TL_LANG']['CTE']['moofxslideSingle'] 	= array('Fx.Slide Einzelelement', 'Erzeugt ein mootools Fx.Slide-Element.');

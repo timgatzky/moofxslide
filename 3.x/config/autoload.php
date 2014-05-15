@@ -16,7 +16,9 @@
  */
 ClassLoader::addClasses(array
 (
-	'ContentFxSlide' => 'system/modules/moofxslide/elements/ContentFxSlide.php',
+	'ContentFxSlide' 		=> 'system/modules/moofxslide/elements/ContentFxSlide.php',
+	'ContentFxSlideStart' 	=> 'system/modules/moofxslide/elements/ContentFxSlideStart.php',
+	'ContentFxSlideStop' 	=> 'system/modules/moofxslide/elements/ContentFxSlideStop.php',
 ));
 
 

@@ -17,13 +17,13 @@
  * Class ContentSlide
  * inherit from ContentAccordion
  */
-class ContentFxSlide extends \ContentAccordion
+class ContentFxSlideStart extends \ContentAccordionStart
 {
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_fxslide';
+	protected $strTemplate = 'ce_fxslide_start';
 
 	/**
 	 * Generate
@@ -32,6 +32,20 @@ class ContentFxSlide extends \ContentAccordion
 	{
 		// generate parent
 		parent::compile();
+		
+		// Fx.Slide start
+		if (TL_MODE == 'FE')
+		{
+			$this->strTemplate = 'ce_fxslide_start';
+			$this->Template = new \FrontendTemplate($this->strTemplate);
+			$this->Template->setData($this->arrData);
+		}
+		else
+		{
+			$this->strTemplate = 'be_wildcard';
+			$this->Template = new \BackendTemplate($this->strTemplate);
+			$this->Template->title = $this->mooHeadline;
+		}
 		
 		$classes = deserialize($this->mooClasses);
 

@@ -15,15 +15,15 @@
 
 /**
  * Class ContentSlide
- * inherit from ContentAccordion
+ * inherit from ContentAccordionStop
  */
-class ContentFxSlide extends \ContentAccordion
+class ContentFxSlideStop extends \ContentAccordionStop
 {
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_fxslide';
+	protected $strTemplate = 'ce_fxslide_stop';
 
 	/**
 	 * Generate
@@ -32,6 +32,19 @@ class ContentFxSlide extends \ContentAccordion
 	{
 		// generate parent
 		parent::compile();
+	
+		// Fx.Slide end
+		if (TL_MODE == 'FE')
+		{
+			$this->strTemplate = 'ce_fxslide_stop';
+			$this->Template = new \FrontendTemplate($this->strTemplate);
+			$this->Template->setData($this->arrData);
+		}
+		else
+		{
+			$this->strTemplate = 'be_wildcard';
+			$this->Template = new \BackendTemplate($this->strTemplate);
+		}
 		
 		$classes = deserialize($this->mooClasses);
 

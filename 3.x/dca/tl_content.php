@@ -15,19 +15,26 @@
 /**
  * Callbacks
  */
-$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('tl_content_fxslide', 'setLabels');
+#$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('tl_content_fxslide', 'setLabels');
 
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslide'] = $GLOBALS['TL_DCA']['tl_content']['palettes']['accordion'];
-$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideSingle'] = $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooSingle'];
-$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStart'] = $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooStart'];
-$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStop'] = $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooStop'];
+$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideSingle'] 	= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionSingle'];
+$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStart'] 	= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionStart'];
+$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStop'] 		= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionStop'];
 
+// Backwards compatibility
+if (version_compare(VERSION, '3.2', '<'))
+{
+	$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslide'] 			= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordion'];
+	$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideSingle'] 	= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooSingle'];
+	$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStart'] 	= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooStart'];
+	$GLOBALS['TL_DCA']['tl_content']['palettes']['moofxslideStop'] 		= $GLOBALS['TL_DCA']['tl_content']['palettes']['accordionmooStop'];
+}
 
 /**
- * Class tl_content_slide
+ * Class tl_content_fxslide
  */
 class tl_content_fxslide extends \Backend
 {
@@ -37,9 +44,7 @@ class tl_content_fxslide extends \Backend
 	 */
 	public function setLabels(DataContainer $dc)
 	{
-		$objCE = $this->Database->prepare("SELECT * FROM tl_content WHERE id=?")
-						->limit(1)
-						->execute($dc->id);
+		$objCE = \Database::getInstance()->prepare("SELECT * FROM tl_content WHERE id=?")->limit(1)	->execute($dc->id);
 		if($objCE->type == 'moofxslide')
 		{
 			// Fields
